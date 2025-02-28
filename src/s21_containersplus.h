@@ -1,9 +1,7 @@
-#ifndef S21_CONTAINERS_H
-#define S21_CONTAINERS_H
+#ifndef S21_CONTAINERS_PLUS_H
+#define S21_CONTAINERS_PLUS_H
 
-#include "vector/s21_vector.h"
-#include "list/s21_list.h"
-#include "stack/s21_stack.h"
+#include "array/s21_array.h"
 
 
 #include <algorithm>

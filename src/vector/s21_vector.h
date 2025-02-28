@@ -1,14 +1,6 @@
 #ifndef S21_VECTOR_H
 #define S21_VECTOR_H
 
-#include <algorithm>
-#include <cstddef>
-#include <iostream>
-#include <limits>
-#include <memory>
-#include <stdexcept>
-
-
 namespace s21 {
     template <class T>
     class vector {
