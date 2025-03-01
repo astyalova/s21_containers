@@ -24,20 +24,20 @@ class list {
     list &operator=(list &&l);
 
     const_reference front();
-    const_reference back() const;
+    const_reference back();
 
     iterator begin();
     iterator end();
     const_iterator cbegin() const;
     const_iterator cend() const;
 
-    bool empty() const;
-    size_type size() const;
+    bool empty();
+    size_type size();
     size_type max_size();
 
     void clear();
     iterator insert(iterator pos, const_reference value);
-    iterator erase(iterator pos);
+    void erase(iterator pos);
     void push_back(const_reference value);
     void pop_back();
     void push_front(const_reference value);
@@ -51,19 +51,19 @@ class list {
 
  private:
   struct Node {
-    value_type data_;
+    value_type data;
     Node *next;
     Node *prev;
-    Node(const_reference value) : data_(value), next(nullptr), prev(nullptr) {}
+    Node(const_reference value) : data(value), next(nullptr), prev(nullptr) {}
 
     friend bool operator<(const typename list<T>::Node& lhs, const typename list<T>::Node& rhs) {
-        return lhs.data_ < rhs.data_;
+        return lhs.data < rhs.data;
     }
 
     friend bool operator==(const typename list<T>::Node& lhs, const typename list<T>::Node& rhs) {
-        return lhs.data_ == rhs.data_;
+        return lhs.data == rhs.data;
     }
-  };
+};
 
   Node* head_;
   Node* tail_;
@@ -88,23 +88,23 @@ class list<T>::ListIterator {
     }
 
     ListIterator operator++() {
-        *node_->next;
-        return this;
+        node_ = node_->next;
+        return *this;
     }
 
     reference operator*() {
         return node_->data;
     }
 
-    bool operator==(const ListIterator& other) {
+    bool operator==(const ListIterator& other) const {
         return other.node_ == node_;
     }
 
-    bool operator!=(const ListIterator& other) {
-        return other.node_ != node_;
+    bool operator!=(const ListIterator& other) const {
+        return !(*this == other.node_);
     }
 
-    typename list<T>::Node getNode() {
+    typename list<T>::Node* getNode() {
         return node_;
     }
 
@@ -130,28 +130,28 @@ class list<T>::ListConstIterator {
     }
 
     ListConstIterator operator++() {
-        *node_->next;
-        return this;
+        node_ = node_->next;
+        return *this;
     }
 
     reference operator*() const {
-        return node_->data_;
+        return node_->data;
     }
-    bool operator==(const ListIterator& other) const {
+    bool operator==(const ListConstIterator& other) const {
         return node_ == other.node_;
     }
 
-    bool operator!=(const ListIterator& other) const {
-        return node_ != other.node_;
+    bool operator!=(const ListConstIterator& other) const {
+        return !(*this == other.node_);
     }
 
-    typename list<T>::Node getNode() {
+    typename list<T>::Node *getNode() {
         return node_;
     }
 
   private:
 
-  const typename list<T>::Node* node_;
+  const typename list<T>::Node *node_;
 
 };
 }; //namespace s21

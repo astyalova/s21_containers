@@ -19,22 +19,15 @@ class stack {
         stack& operator=(stack &&s);
 
         const_reference top();
-        bool empty() const;
-        size_type size() const;
+        bool empty();
+        size_type size();
 
         void push(const_reference value);
         void pop();
         void swap(stack& other);
 
     private:
-    struct Node {
-        value_type data;
-        Node *next;
-        Node(const_reference value) : data(value), next(nullptr) {}
-    };
-
-        Node* head_;
-        size_type node_size_;
+    s21::list<value_type> stack_;
 };
 
 } // namespace s21

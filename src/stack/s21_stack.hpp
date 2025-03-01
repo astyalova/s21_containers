@@ -6,12 +6,12 @@
 namespace s21 {
 
 template <class T>
-stack<T>::stack() : head_(nullptr), node_size_(0) {}
+stack<T>::stack() = default;
 
 template <class T>
-stack<T>::stack(std::initializer_list<value_type> const &items) : head_(nullptr), node_size_(0) {
-    for(const auto& item : items) {
-        push(item);
+stack<T>::stack(std::initializer_list<value_type> const &items) {
+    for (const auto& item : items) {
+        this->push(item);
     }
 }
 
@@ -25,41 +25,37 @@ template <class T>
 stack<T>::~stack() = default;
 
 template <class T>
-stack<T>& stack<T>::operator=(stack &&s) {
-    if (this != &s) {
-        data_ = std::move(s.data_);
-    }
-    return *this;
-}
+stack<T>& stack<T>::operator=(stack &&s) = default;
+
 
 template <class T>
 typename stack<T>::const_reference stack<T>::top()  {
-    return data_.back();
+    return stack_.back();
 }
 
 template <class T>
-bool stack<T>::empty() const {
-    return data_.empty();
+bool stack<T>::empty() {
+    return stack_.empty();
 }
 
 template <class T>
-typename stack<T>::size_type stack<T>::size() const { 
-    return data_.size();
+typename stack<T>::size_type stack<T>::size() { 
+    return stack_.size();
 }
 
 template <class T>
 void stack<T>::push(const_reference value) {
-    data_.push_back(value);
+    stack_.push_back(value);
 }
 
 template <class T>
 void stack<T>::pop() {
-    data_.pop_back();
+    stack_.pop_back();
 }
 
 template <class T>
 void stack<T>::swap(stack& other) {
-    data_.swap(other.data_);
+    stack_.swap(other.stack_);
 }
 
 }; // namespace s21

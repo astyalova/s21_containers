@@ -11,9 +11,9 @@ TEST(Constructor, Default_stack) {
 }
 
 TEST(Constructor, Initializer_list_constructor_stack) {
-    s21::stack<int> i{1, 2, 3, 4, -5, 6};
-    s21::stack<double> d{6.5, -7.8, 4.5};
-    s21::stack<std::string> str{"st", "v", "hh", "lll"};
+    s21::stack<int> i = {1, 2, 3, 4, -5, 6};
+    s21::stack<double> d = {6.5, -7.8, 4.5};
+    s21::stack<std::string> str = {"st", "v", "hh", "lll"};
 
     EXPECT_FALSE(i.empty());
     EXPECT_EQ(i.size(), 6);
