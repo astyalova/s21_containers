@@ -6,6 +6,7 @@
 #include "stack/s21_stack.h"
 #include "array/s21_array.h"
 #include "queue/s21_queue.h"
+#include "BSTree/s21_tree.h"
 
 #include <algorithm>
 #include <cstddef>

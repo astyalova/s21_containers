@@ -6,14 +6,16 @@ EXECUTABLE = test
 SRC_LIST_TEST = ./tests/test_list.cpp
 SRC_STACK_TEST = ./tests/test_stack.cpp
 SRC_QUEUE_TEST = ./tests/queue_tests.cc
+SRC_TREE_TEST = ./tests/test_tree.cpp
+SRC_QUEUE_TEST = ./tests/test_queue.cc
 SRC_MAP_TEST = ./tests/map_tests.cc
 SRC_SET_TEST = ./tests/set_tests.cc
 SRC_MULTISET_TEST = ./tests/multiset_tests.cc
 SRC_VECTOR_TEST = ./tests/test_vector.cpp
-SRC_ARRAY_TEST = ./tests/test_array.cc
+SRC_ARRAY_TEST = ./tests/test_array.cpp
+SRC_ARRAY_TEST = ./tests/test_array.cpp
 
-SOURCE =  $(SRC_VECTOR_TEST) $(SRC_STACK_TEST) $(SRC_LIST_TEST) $(SRC_ARRAY_TEST)
-
+SOURCE =  $(SRC_VECTOR_TEST) $(SRC_STACK_TEST) $(SRC_LIST_TEST) $(SRC_ARRAY_TEST) $(SRC_TREE_TEST) $(SRC_QUEUE_TEST)
 UNAME = $(shell uname)
 
 OPEN_REPORT :=
@@ -80,6 +82,9 @@ test_vector:
 
 test_array:
 	@$(CC) $(CFLAGS) $(SRC_ARRAY_TEST) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
+
+test_tree:
+	@$(CC) $(CFLAGS) $(SRC_TREE_TEST) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 run:
 	./$(EXECUTABLE)
