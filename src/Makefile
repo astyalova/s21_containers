@@ -5,17 +5,15 @@ EXECUTABLE = test
 
 SRC_LIST_TEST = ./tests/test_list.cpp
 SRC_STACK_TEST = ./tests/test_stack.cpp
-SRC_QUEUE_TEST = ./tests/queue_tests.cc
+SRC_QUEUE_TEST = ./tests/test_queue.cpp
 SRC_TREE_TEST = ./tests/test_tree.cpp
-SRC_QUEUE_TEST = ./tests/test_queue.cc
-SRC_MAP_TEST = ./tests/map_tests.cc
-SRC_SET_TEST = ./tests/set_tests.cc
-SRC_MULTISET_TEST = ./tests/multiset_tests.cc
+SRC_MAP_TEST = ./tests/test_map.cpp
+SRC_SET_TEST = ./tests/test_set.cpp
+SRC_MULTISET_TEST = ./tests/test_multiset.cpp
 SRC_VECTOR_TEST = ./tests/test_vector.cpp
 SRC_ARRAY_TEST = ./tests/test_array.cpp
-SRC_ARRAY_TEST = ./tests/test_array.cpp
 
-SOURCE =  $(SRC_VECTOR_TEST) $(SRC_STACK_TEST) $(SRC_LIST_TEST) $(SRC_ARRAY_TEST) $(SRC_TREE_TEST) $(SRC_QUEUE_TEST)
+SOURCE =  $(SRC_VECTOR_TEST) $(SRC_STACK_TEST) $(SRC_LIST_TEST) $(SRC_ARRAY_TEST) $(SRC_TREE_TEST) $(SRC_QUEUE_TEST) $(SRC_MAP_TEST) $(SRC_SET_TEST) $(SRC_MULTISET_TEST)
 UNAME = $(shell uname)
 
 OPEN_REPORT :=
@@ -56,6 +54,9 @@ leaks_check: test
 	@$(LEAKS) ./$(EXECUTABLE)
 
 
+style:
+	@find . -type f \( -name "*.h" -o -name "*.hpp" -o -name "*.cpp" \) -exec clang-format -n {} \;
+	@find . -type f \( -name "*.h" -o -name "*.hpp" -o -name "*.cpp" \) -exec clang-format -i {} \;
 fsanitize_check:
 	@$(CC) -fsanitize=address $(CFLAGS) $(SOURCE) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
@@ -67,9 +68,6 @@ test_stack:
 
 test_queue:
 	@$(CC) $(CFLAGS) $(SRC_QUEUE_TEST) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
-
-test_map:
-	@$(CC) $(CFLAGS) $(SRC_MAP_TEST) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 test_set:
 	@$(CC) $(CFLAGS) $(SRC_SET_TEST) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
@@ -85,6 +83,9 @@ test_array:
 
 test_tree:
 	@$(CC) $(CFLAGS) $(SRC_TREE_TEST) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
+
+test_map:
+	@$(CC) $(CFLAGS) $(SRC_MAP_TEST) -lgtest_main -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 run:
 	./$(EXECUTABLE)

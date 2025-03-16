@@ -3,31 +3,37 @@
 
 namespace s21 {
 
-template <class T>
-class stack {
-    public:
-        using value_type = T;
-        using reference = T&;
-        using const_reference = const T&;
-        using size_type = size_t;
+template <class T> class stack {
+public:
+  // Member type
+  using value_type = T;
+  using reference = T &;
+  using const_reference = const T &;
+  using size_type = size_t;
 
-        stack();
-        stack(std::initializer_list<value_type> const &items);
-        stack(const stack &s);
-        stack(stack &&s);
-        ~stack();
-        stack& operator=(stack &&s);
+  // Functions
+  stack();
+  stack(std::initializer_list<value_type> const &items);
+  stack(const stack &s);
+  stack(stack &&s);
+  ~stack();
+  stack &operator=(stack &&s);
 
-        const_reference top();
-        bool empty();
-        size_type size();
+  // Element access
+  const_reference top();
+  bool empty();
+  size_type size();
 
-        void push(const_reference value);
-        void pop();
-        void swap(stack& other);
+  // Capacity
+  void push(const_reference value);
+  void pop();
+  void swap(stack &other);
 
-    private:
-    s21::list<value_type> stack_;
+  // Modifiers
+  template <class... Args> void insert_many_back(Args &&...args);
+
+private:
+  s21::list<value_type> stack_;
 };
 
 } // namespace s21
